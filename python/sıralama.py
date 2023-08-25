@@ -140,59 +140,59 @@ def selection_sort(arr):
 
 
 
-import psutil
-import time
+if(__name__ == "__main__"):
+    import psutil
+    import time
 
 
 
-# diziyi oluşturma
+    # diziyi oluşturma
 
-with open('dizi.txt', 'r') as dosya:
-    # dosyadaki verileri okuyun
-    veriler = dosya.read()
-    veriler_dizi = veriler.split()
-    
-arr = []
-
-for veri in veriler_dizi:
-    sayi = int(veri)
-    arr.append(sayi)
-
-
-
-#dizi sıralama 
-
-#Hız ve bellek testi
-
-totaltime = 0
-totalmemory = 0
-for i in range(100):
-
-    array = arr
-    before_function = psutil.virtual_memory().used # çalıştırmadan önce kullanılan bellek miktarı
-    time_before = time.time() # çalıştırmadan önceki zaman
-
-    heap_sort(array)
-    # quick_sort(array)
-    # bubble_sort(array)
-    # merge_sort(array)
-    selection_sort(array)
-
-    time_after = time.time() # çalıştırmadan sonraki zaman
-    süre = time_after - time_before # fonksiyonun çalışma süresi
-
+    with open('dizi.txt', 'r') as dosya:
+        # dosyadaki verileri okuyun
+        veriler = dosya.read()
+        veriler_dizi = veriler.split()
         
-    after_function = psutil.virtual_memory().used # çalıştırmadan sonra kullanılan bellek miktarı
-    function_memory_usage = after_function - before_function # fonksiyon çalıştırıldıktan sonra kullanılan bellek miktarı
+    arr = []
+
+    for veri in veriler_dizi:
+        sayi = int(veri)
+        arr.append(sayi)
+
+
+
+    #dizi sıralama 
+
+    #Hız ve bellek testi
+
+    totaltime = 0
+    totalmemory = 0
+    for i in range(100):
+
+        array = arr
+        before_function = psutil.virtual_memory().used # çalıştırmadan önce kullanılan bellek miktarı
+        time_before = time.time() # çalıştırmadan önceki zaman
+
+        heap_sort(array)
+        # quick_sort(array)
+        # bubble_sort(array)
+        # merge_sort(array)
+        selection_sort(array)
+
+        time_after = time.time() # çalıştırmadan sonraki zaman
+        süre = time_after - time_before # fonksiyonun çalışma süresi
+
+            
+        after_function = psutil.virtual_memory().used # çalıştırmadan sonra kullanılan bellek miktarı
+        function_memory_usage = after_function - before_function # fonksiyon çalıştırıldıktan sonra kullanılan bellek miktarı
+            
+        totaltime+= süre
+        totalmemory += function_memory_usage
+
+
+    print("Çalışma süresi: " ,abs(totaltime/100) ," saniye")
+    print("Toplam bellek kullanımı: " , abs(int(totalmemory/100)) , " byte")
         
-    totaltime+= süre
-    totalmemory += function_memory_usage
-
-
-print("Çalışma süresi: " ,abs(totaltime/100) ," saniye")
-print("Toplam bellek kullanımı: " , abs(int(totalmemory/100)) , " byte")
-    
- 
 
 
 
